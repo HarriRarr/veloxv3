@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -7,17 +10,38 @@ import {
   MessageSquare,
   Search,
   Target,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "Will I get banned from Reddit?",
+      answer: "We take account safety seriously. Velox provides AI-driven tone checks and strict posting limits to ensure you behave like a helpful community member, not a spammer. However, you are responsible for the final content you post."
+    },
+    {
+      question: "Can I cancel my subscription anytime?",
+      answer: "Yes, absolutely. You can cancel your subscription with one click from your dashboard settings. You'll retain access until the end of your billing period."
+    },
+    {
+      question: "When does billing start?",
+      answer: "Billing starts when you subscribe to the Pro plan. You can cancel anytime from your dashboard settings."
+    },
+    {
+      question: "How does the AI generate posts?",
+      answer: "We analyze the top-performing posts in your target subreddits to understand what content resonates. Then, we combine your brand's value proposition with those patterns to create authentic, engaging posts."
+    }
+  ];
+
   return (
     <main className="flex-1 flex flex-col items-center">
       {/* Navbar */}
       <header className="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center font-bold text-white">
-            V
-          </div>
+          <img src="/logo.png" alt="Velox Logo" className="w-8 h-8 rounded-md" />
           <span className="font-bold text-xl tracking-tight">Velox</span>
         </div>
         <nav className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
@@ -240,6 +264,38 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="w-full max-w-3xl mx-auto px-6 py-24">
+        <h2 className="text-4xl font-bold tracking-tight text-center mb-16">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="border border-border rounded-xl overflow-hidden bg-card/30"
+            >
+              <button
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-card/50 transition-colors"
+                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+              >
+                <span className="font-semibold">{faq.question}</span>
+                {openFaq === index ? (
+                  <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                )}
+              </button>
+              {openFaq === index && (
+                <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+                  {faq.answer}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </section>
 

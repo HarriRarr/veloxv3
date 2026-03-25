@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import { ArrowLeft, Loader2, CheckCircle2 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
 export default function SignupPage() {
@@ -49,6 +49,26 @@ export default function SignupPage() {
     }
   };
 
+  if (successMsg) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4">
+        <div className="w-full max-w-md bg-card border border-border rounded-2xl p-8 shadow-2xl text-center">
+          <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-8 h-8 text-green-500" />
+          </div>
+          <h1 className="text-2xl font-bold tracking-tight mb-2">Check your email</h1>
+          <p className="text-muted-foreground mb-8">
+            We&apos;ve sent a confirmation link to <span className="text-foreground font-medium">{email}</span>. 
+            Please confirm your email to activate your account.
+          </p>
+          <Button asChild className="w-full py-6">
+            <Link href="/login">Return to Login</Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4">
       <Link href="/" className="absolute top-8 left-8 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -58,7 +78,7 @@ export default function SignupPage() {
       
       <div className="w-full max-w-md bg-card border border-border rounded-2xl p-8 shadow-2xl mt-12 mb-12">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center font-bold text-white text-2xl mb-4">V</div>
+          <img src="/logo.png" alt="Velox Logo" className="w-12 h-12 mb-4 rounded-xl" />
           <h1 className="text-2xl font-bold tracking-tight">Create an account</h1>
           <p className="text-muted-foreground text-sm mt-1">Start dominating Reddit today</p>
         </div>
@@ -67,11 +87,6 @@ export default function SignupPage() {
           {error && (
             <div className="p-3 text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded-md">
               {error}
-            </div>
-          )}
-          {successMsg && (
-            <div className="p-3 text-sm text-green-600 bg-green-500/10 border border-green-500/20 rounded-md">
-              {successMsg}
             </div>
           )}
           <div className="space-y-2">

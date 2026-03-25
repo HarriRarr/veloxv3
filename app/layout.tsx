@@ -10,6 +10,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Velox - Reddit Marketing for Solopreneurs",
   description: "Turn Reddit into your #1 Source of Revenue",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

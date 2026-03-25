@@ -36,9 +36,7 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside className="w-64 border-r border-border bg-card/50 flex flex-col">
         <div className="p-6 flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center font-bold text-white">
-            V
-          </div>
+          <img src="/logo.png" alt="Velox Logo" className="w-8 h-8 rounded-md" />
           <span className="font-bold text-xl tracking-tight">Velox</span>
         </div>
 

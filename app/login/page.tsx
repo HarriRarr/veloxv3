@@ -46,9 +46,7 @@ export default function LoginPage() {
 
       <div className="w-full max-w-md bg-card border border-border rounded-2xl p-8 shadow-2xl">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center font-bold text-white text-2xl mb-4">
-            V
-          </div>
+          <img src="/logo.png" alt="Velox Logo" className="w-12 h-12 mb-4 rounded-xl" />
           <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
           <p className="text-muted-foreground text-sm mt-1">
             Sign in to your Velox account
